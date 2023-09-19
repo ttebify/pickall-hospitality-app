@@ -8,6 +8,7 @@ use App\Http\Requests\UserRegistrationRequest;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use JsonException;
@@ -31,14 +32,14 @@ class AuthController extends Controller
 
             activity()->log($request['email'] . ' just registered');
 
-            return $this->success([
+            return $this->respond([
                 'user' => $user,
                 'token' => $user->createToken('API Token of ' . $user->name)->plainTextToken
-            ], 'Registration was successfull');
+            ]);
         } catch (JsonException $e) {
             logger($e, $e->getTrace());
 
-            return $this->error(null, 'Failed to create a new account', 400);
+            return $this->respondError('Failed to create a new account', Response::HTTP_BAD_REQUEST);
         }
     }
 
@@ -55,14 +56,14 @@ class AuthController extends Controller
 
             activity()->log($user->email . ' just logged in');
 
-            return $this->success([
+            return $this->respond([
                 'user' => $user,
                 'token' => $user->createToken('API Token of ' . $user->name)->plainTextToken
             ]);
         } catch (JsonException $e) {
             logger($e, $e->getTrace());
 
-            return $this->error(null, 'Failed to login', 400);
+            return $this->respondError('Failed to login', Response::HTTP_BAD_REQUEST);
         }
     }
 }
