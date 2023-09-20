@@ -31,9 +31,9 @@ class Property extends Model
     }
 
     public function dynamic_pricing($lira) {
-        $current_currency = Cookie::get('currency', 'tl');  //ekhane Cookie::get('key':'currency', default:'tl'); mane default lira(tl) raktechi amra currency website e.
+        $current_currency = Cookie::get('currency', 'usd');
         if($current_currency == 'usd') {
-            $get = Http::get('https://freecurrencyapi.net/api/v2/latest?apikey=76c89170-6178-11ec-98f1-5f7ce0abde0a&base_currency=USD');
+            $get = Http::get('https://freecurrencyapi.net/api/v2/latest?apikey=cur_live_LAV8H8dhcXvYyjoRCPVb3tf5MhQ5oXTi8Veu9f9C&base_currency=USD');
             if($get->successful()) {
                 $usd = intval($lira * $get->json()['data']['USD']);
                 $usd = number_format($usd, 2);
@@ -41,7 +41,7 @@ class Property extends Model
             }
         }
         elseif($current_currency == 'ngn'){
-            $get = Http::get('https://freecurrencyapi.net/api/v2/latest?apikey=76c89170-6178-11ec-98f1-5f7ce0abde0a&base_currency=USD');
+            $get = Http::get('https://freecurrencyapi.net/api/v2/latest?apikey=cur_live_LAV8H8dhcXvYyjoRCPVb3tf5MhQ5oXTi8Veu9f9C&base_currency=USD');
             if($get->successful()) {
                 $bdt = intval($lira * $get->json()['data']['NGN']);
                 $bdt = number_format($bdt, 2);
@@ -49,7 +49,7 @@ class Property extends Model
             }
         } else {
             $lira = number_format($lira, 2);
-            return $lira . ' TL';
+            return $lira . ' USD';
         }
     }
 
