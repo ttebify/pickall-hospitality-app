@@ -44,24 +44,5 @@ class DatabaseSeeder extends Seeder
             $page->slug = 'about-us';
             $page->content = 'Lorem ipsum dolor, sit amet rem cumque aliquam dolorem veritatis';
             $page->save();
-        //------------ or ------------------
-            // User::create([
-            //     'name'  => 'Shadhin Ahmed',
-            //     'email' => 'shadhinplanet@gmail.com',
-            //     'password'=> Hash::make('123'),
-            // ]);
-
-            // Page::create([
-            //     'name'  => 'Contact Us',
-            //     'slug'  => 'contact-us',
-            //     'content'=> 'Lorem ipsum dolor, sit amet llam quae incidunt quos dolor, totam rem cumque aliquam,'
-            // ]);
-            // Page::create([
-            //     'name'  => 'About Us',
-            //     'slug'  => 'about-us',
-            //     'content'=> 'Lorem ipsum dolor, sit possimus assumenda dolorem veritatis aperiam! Necessitatibus.'
-            // ]);
-
-
     }
 }
