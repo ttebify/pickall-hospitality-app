@@ -9,13 +9,22 @@
             <li><a class="inline-block p-4 text-white {{ request()->is('*page/about-us*') ? 'bg-gray-50' : '' }}" href="{{ route('page', 'about-us') }}">{{ __('About Us') }}</a></li>
             <li><a class="inline-block p-4 text-white {{ request()->is('page/contact-us') ? 'bg-gray-50' : '' }}" href="{{ route('page', 'contact-us') }}">{{ __('Contact Us') }}</a></li>
             
-            {{-- Check if the user is not authenticated --}}
             @guest
                 <li><a class="inline-block p-4 text-white {{ request()->is('login') ? 'bg-gray-50' : '' }}" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                 <li><a class="inline-block p-4 text-white {{ request()->is('register') ? 'bg-gray-50' : '' }}" href="{{ route('register') }}">{{ __('Register') }}</a></li>
             @endguest
+    
+            @auth
+                <li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="inline-block p-4 text-white">{{ __('Logout') }}</button>
+                    </form>
+                </li>
+            @endauth
         </ul>
     </div>
+    
     
 
     <div class="min-w-max text-3xl flex justify-end">

@@ -200,7 +200,7 @@
             {{-- Sidebar --}}
             <div class="w-3/12 ml-6">
                 <div class="border-2 border-red-800 px-5 py-3 text-center font-light text-base">
-                    <p>Subscribe to Property Turkey media for blogs/news/videos</p>
+                    <p>Book this Apartment</p>
                 </div>
                 {{-- Form --}}
                 <div class="px-4 py-5 text-left bg-gray-300 my-5">
